@@ -25,5 +25,10 @@ namespace flight_project
              SeatsAvailable = seats;
              Price = price;
          }
+        
+         public void PrintInfo()
+         {
+             Console.WriteLine($"Полет ID: {FlightId} | До: {Destination} | Излита: {DepartureTime} | Каца: {ArrivalTime} | Свободни места: {SeatsAvailable} | Цена: {Price:F2} лв.");
+         }
     }
 }
