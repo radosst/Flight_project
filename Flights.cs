@@ -14,5 +14,16 @@ namespace flight_project
          public string ArrivalTime { get; set; }
          public int SeatsAvailable { get; set; }
          public double Price { get; set; }
+
+
+         public Flight(string id, string dest, string dep, string arr, int seats, double price)
+         {
+             FlightId = id;
+             Destination = dest;
+             DepartureTime = dep;
+             ArrivalTime = arr;
+             SeatsAvailable = seats;
+             Price = price;
+         }
     }
 }
