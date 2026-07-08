@@ -30,5 +30,11 @@ namespace flight_project
          {
              Console.WriteLine($"Полет ID: {FlightId} | До: {Destination} | Излита: {DepartureTime} | Каца: {ArrivalTime} | Свободни места: {SeatsAvailable} | Цена: {Price:F2} лв.");
          }
+
+         public string ToFileFormat()
+         {
+            return $"{FlightId},{Destination},{DepartureTime},{ArrivalTime},{SeatsAvailable},{Price}";
+         }
+        
     }
 }
