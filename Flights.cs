@@ -8,5 +8,11 @@ namespace flight_project
 {
     internal class Flights
     {
+         public string FlightId { get; set; }
+         public string Destination { get; set; }
+         public string DepartureTime { get; set; }
+         public string ArrivalTime { get; set; }
+         public int SeatsAvailable { get; set; }
+         public double Price { get; set; }
     }
 }
