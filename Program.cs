@@ -7,8 +7,10 @@
 
         static void Main(string[] args)
         {
-                while (true)
-                {
+            LoadFlightsFromFile();
+
+            while (true)
+            {
                     Console.WriteLine("--- МЕНЮ УПРАВЛЕНИЕ НА ПОЛЕТИ ---");
                     Console.WriteLine("1.Добавяне на нов полет ");
                     Console.WriteLine("2.Продажба на билети за полет ");
@@ -44,9 +46,37 @@
                     {
                         Console.WriteLine("Невалиден избор. Моля, опитайте отново.");
                     }
-                }
+                
             }
 
+        }
+         static void LoadFlightsFromFile()
+        {
+            if (!File.Exists(filePath))
+            {
+                File.Create(filePath).Close();
+                return;
+            }
+
+            string[] lines = File.ReadAllLines(filePath);
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (string.IsNullOrWhiteSpace(lines[i])) continue;
+
+                string[] parts = lines[i].Split(',');
+                if (parts.Length == 6)
+                {
+                    string id = parts[0];
+                    string dest = parts[1];
+                    string dep = parts[2];
+                    string arr = parts[3];
+                    int seats = int.Parse(parts[4]);
+                    double price = double.Parse(parts[5]);
+
+                    Flights f = new Flights(id, dest, dep, arr, seats, price);
+                    flights.Add(f);
+                }
+            }
         }
     }
 }

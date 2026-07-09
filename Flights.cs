@@ -16,7 +16,7 @@ namespace flight_project
          public double Price { get; set; }
 
 
-         public Flight(string id, string dest, string dep, string arr, int seats, double price)
+         public Flights(string id, string dest, string dep, string arr, int seats, double price)
          {
              FlightId = id;
              Destination = dest;
