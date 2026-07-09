@@ -11,47 +11,47 @@
 
             while (true)
             {
-                    Console.WriteLine("--- МЕНЮ УПРАВЛЕНИЕ НА ПОЛЕТИ ---");
-                    Console.WriteLine("1.Добавяне на нов полет ");
-                    Console.WriteLine("2.Продажба на билети за полет ");
-                    Console.WriteLine("3.Проверка на наличност на билети за полет ");
-                    Console.WriteLine("4.Справка за всички полети ");
-                    Console.WriteLine("5. Изход");
-                    Console.Write("Изберете опция (1-5): ");
+                Console.WriteLine("--- МЕНЮ УПРАВЛЕНИЕ НА ПОЛЕТИ ---");
+                Console.WriteLine("1.Добавяне на нов полет ");
+                Console.WriteLine("2.Продажба на билети за полет ");
+                Console.WriteLine("3.Проверка на наличност на билети за полет ");
+                Console.WriteLine("4.Справка за всички полети ");
+                Console.WriteLine("5. Изход");
+                Console.Write("Изберете опция (1-5): ");
 
-                    string choice = Console.ReadLine();
+                string choice = Console.ReadLine();
 
-                    if (choice == "1")
-                    {
-                        AddNewFlight();
-                    }
-                    else if (choice == "2")
-                    {
-                        SellTickets();
-                    }
-                    else if (choice == "3")
-                    {
-                        CheckAvailability();
-                    }
-                    else if (choice == "4")
-                    {
-                        ShowAllFlights(); 
-                    }
-                    else if (choice == "5")
-                    {
-                        Console.WriteLine("Благодарим ви, че използвахте програмата. Приятен ден!");
-                        break; 
-                    }
-                    else
-                    {
-                        Console.WriteLine("Невалиден избор. Моля, опитайте отново.");
-                    }
-                
+                if (choice == "1")
+                {
+                    AddNewFlight();
+                }
+                else if (choice == "2")
+                {
+                    SellTickets();
+                }
+                else if (choice == "3")
+                {
+                    CheckAvailability();
+                }
+                else if (choice == "4")
+                {
+                    ShowAllFlights();
+                }
+                else if (choice == "5")
+                {
+                    Console.WriteLine("Благодарим ви, че използвахте програмата. Приятен ден!");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Невалиден избор. Моля, опитайте отново.");
+                }
+
             }
 
         }
-         static void LoadFlightsFromFile()
-         {
+        static void LoadFlightsFromFile()
+        {
             if (!File.Exists(filePath))
             {
                 File.Create(filePath).Close();
@@ -77,7 +77,7 @@
                     flights.Add(f);
                 }
             }
-         }
+        }
         static void AddNewFlight()
         {
             Console.WriteLine("--- ДОБАВЯНЕ НА НОВ ПОЛЕТ ---");
@@ -104,6 +104,28 @@
 
             SaveFlightsToFile();
             Console.WriteLine("Полетът е добавен успешно и файлът е актуализиран!");
+        }
+        static void CheckAvailability()
+        {
+            Console.WriteLine("--- ПРОВЕРКА НА НАЛИЧНОСТ ---");
+            Console.Write("Въведете дестинация или ID на полет за търсене: ");
+            string searchInput = Console.ReadLine();
+
+            bool found = false;
+            for (int i = 0; i < flights.Count; i++)
+            { 
+                if (flights[i].FlightId == searchInput || flights[i].Destination.ToLower() == searchInput.ToLower())
+                {
+                    Console.WriteLine($"Намерено съвпадение:");
+                    Console.WriteLine($"Дестинация: {flights[i].Destination} | Налични билети: {flights[i].SeatsAvailable} | Цена: {flights[i].Price:F2} евро.");
+                    found = true;
+                }
+            }
+
+            if (!found)
+            {
+                Console.WriteLine("Не е намерен полет по въведените критерии.");
+            }
         }
     }
 }
