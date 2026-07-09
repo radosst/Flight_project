@@ -51,7 +51,7 @@
 
         }
          static void LoadFlightsFromFile()
-        {
+         {
             if (!File.Exists(filePath))
             {
                 File.Create(filePath).Close();
@@ -77,6 +77,33 @@
                     flights.Add(f);
                 }
             }
+         }
+        static void AddNewFlight()
+        {
+            Console.WriteLine("--- ДОБАВЯНЕ НА НОВ ПОЛЕТ ---");
+            Console.Write("Въведете ID на полета: ");
+            string id = Console.ReadLine();
+
+            Console.Write("Въведете дестинация: ");
+            string dest = Console.ReadLine();
+
+            Console.Write("Въведете време на излитане (напр. 12-12-24 12:00): ");
+            string dep = Console.ReadLine();
+
+            Console.Write("Въведете време на пристигане (напр. 12-12-24 12:30): ");
+            string arr = Console.ReadLine();
+
+            Console.Write("Въведете налични места: ");
+            int seats = int.Parse(Console.ReadLine());
+
+            Console.Write("Въведете цена на билет: ");
+            double price = double.Parse(Console.ReadLine());
+
+            Flights newFlight = new Flights(id, dest, dep, arr, seats, price);
+            flights.Add(newFlight);
+
+            SaveFlightsToFile();
+            Console.WriteLine("Полетът е добавен успешно и файлът е актуализиран!");
         }
     }
 }
