@@ -78,6 +78,17 @@
                 }
             }
         }
+
+        static void SaveFlightsToFile()
+        {
+            List<string> lines = new List<string>();
+            for (int i = 0; i < flights.Count; i++)
+            {
+                lines.Add(flights[i].ToFileFormat());
+            }
+            File.WriteAllLines(filePath, lines);
+        }
+        
         static void AddNewFlight()
         {
             Console.WriteLine("--- ДОБАВЯНЕ НА НОВ ПОЛЕТ ---");
