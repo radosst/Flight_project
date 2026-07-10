@@ -105,6 +105,49 @@
             SaveFlightsToFile();
             Console.WriteLine("Полетът е добавен успешно и файлът е актуализиран!");
         }
+
+        static void SellTickets()
+        {
+            Console.WriteLine("\n--- ПРОДАЖБА НА БИЛЕТИ ---");
+            Console.Write("Въведете ID на полета, за който купувате билети: ");
+            string searchId = Console.ReadLine();
+
+            Flight foundFlight = null;
+            for (int i = 0; i < flights.Count; i++)
+            {
+                if (flights[i].FlightId == searchId)
+                {
+                    foundFlight = flights[i];
+                    break;
+                }
+            }
+
+            if (foundFlight == null)
+            {
+                Console.WriteLine("Полет с такова ID не беше намерен.");
+                return;
+            }
+
+            Console.Write($"Налични места: {foundFlight.SeatsAvailable}. Колко билета искате да закупите? ");
+            int countToBuy = int.Parse(Console.ReadLine());
+
+            if (countToBuy <= foundFlight.SeatsAvailable)
+            {
+                double totalPrice = countToBuy * foundFlight.Price;
+                foundFlight.SeatsAvailable -= countToBuy;
+        
+                SaveFlightsToFile();
+
+                Console.WriteLine($"Успешна покупка! Обща стойност: {totalPrice:F2} евро.");
+                Console.WriteLine($"Остават {foundFlight.SeatsAvailable} свободни места за този полет.");
+            }
+            else
+              {
+                Console.WriteLine("Няма достатъчно свободни места за тази поръчка!");
+              }
+        }    
+
+        
         static void CheckAvailability()
         {
             Console.WriteLine("--- ПРОВЕРКА НА НАЛИЧНОСТ ---");
