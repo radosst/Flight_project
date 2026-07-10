@@ -181,5 +181,21 @@
                 Console.WriteLine("Не е намерен полет по въведените критерии.");
             }
         }
+
+        static void ShowAllFlights()
+        {
+            Console.WriteLine("\n--- СПИСЪК С ВСИЧКИ ПОЛЕТИ ---");
+            if (flights.Count == 0)
+            {
+                Console.WriteLine("Няма налични полети в системата.");
+                return;
+            }
+
+            for (int i = 0; i < flights.Count; i++)
+            {
+                flights[i].PrintInfo();
+            }
+        }
+        
     }
 }
