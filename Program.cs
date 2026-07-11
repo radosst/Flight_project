@@ -2,7 +2,7 @@
 {
     internal class Program
     {
-        static string filePath = "flights.txt";
+        static string filePath = "flights_info.txt";
         static List<Flights> flights = new List<Flights>();
 
         static void Main(string[] args)
@@ -18,7 +18,7 @@
                 Console.WriteLine("2.Продажба на билети за полет ");
                 Console.WriteLine("3.Проверка на наличност на билети за полет ");
                 Console.WriteLine("4.Справка за всички полети ");
-                Console.WriteLine("5. Изход");
+                Console.WriteLine("5.Изход");
                 Console.Write("Изберете опция (1-5): ");
 
                 string choice = Console.ReadLine();
@@ -109,7 +109,7 @@
             Console.Write("Въведете налични места: ");
             int seats = int.Parse(Console.ReadLine());
 
-            Console.Write("Въведете цена на билет: ");
+            Console.Write("Въведете цена на билет в евро: ");
             double price = double.Parse(Console.ReadLine());
 
             Flights newFlight = new Flights(id, dest, dep, arr, seats, price);
@@ -125,7 +125,7 @@
             Console.Write("Въведете ID на полета, за който купувате билети: ");
             string searchId = Console.ReadLine();
 
-            Flight foundFlight = null;
+            Flights foundFlight = null;
             for (int i = 0; i < flights.Count; i++)
             {
                 if (flights[i].FlightId == searchId)
@@ -155,9 +155,9 @@
                 Console.WriteLine($"Остават {foundFlight.SeatsAvailable} свободни места за този полет.");
             }
             else
-              {
+            {
                 Console.WriteLine("Няма достатъчно свободни места за тази поръчка!");
-              }
+            }
         }    
 
         
